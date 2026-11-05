@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Pokeweb - El Universo de las Cartas Pokémon</title>
+	<div>
+		<img src="../images/LOGOTIPO_OKEWEB.jpg" alt="30" id="logo-header">
+	</div>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	
+	<script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-size: 14px;
+			color: #333333;
+			background: linear-gradient(135deg, #3b5998 0%, #1a2b4c 100%);
+			margin: 0;
+			padding: 20px 0;
+		}
+
+		#wrapper {
+			width: 960px;
+			margin: 0 auto;
+			background-color: #ffffff;
+			border: 3px solid #ffcc00;
+			border-radius: 8px;
+			box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+			overflow: hidden;
+		}
+
+		/* Cabecera con Logo Pequeño */
+		#header {
+			height: 95px;
+			background: linear-gradient(to bottom, #ffdd33 0%, #ffcc00 100%);
+			padding: 15px 25px;
+			box-sizing: border-box;
+			border-bottom: 5px solid #cc0000;
+			overflow: hidden;
+		}
+
+		#logo-header {
+			float: left;
+			height: 50px; /* Tamaño del logo pequeño */
+			width: auto;
+			margin-right: 15px;
+			margin-top: 5px;
+		}
+
+		#header-texto {
+			float: left;
+		}
+
+		#header-texto h1 {
+			margin: 0;
+			font-size: 24px;
+			color: #1a2b4c;
+			text-transform: uppercase;
+			text-shadow: 1px 1px 0px #ffffff;
+		}
+
+		#header-texto p {
+			margin: 4px 0 0 0;
+			font-weight: bold;
+			color: #cc0000;
+			font-size: 13px;
+		}
+
+		/* Menú de Navegación */
+		#cssmenu {
+			font-family: "Open Sans", Arial, sans-serif;
+			font-size: 12px;
+			text-transform: uppercase;
+			background: #1a2b4c;
+		}
+
+		#cssmenu > ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			background: #1a2b4c;
+		}
+
+		#cssmenu > ul li {
+			display: inline-block;
+		}
+
+		#cssmenu > ul li a {
+			display: block;
+			padding: 14px 22px;
+			text-decoration: none;
+			color: #ffffff;
+			font-weight: bold;
+			transition: background-color 0.3s;
+		}
+
+		#cssmenu > ul li a:hover,
+		#cssmenu > ul li.active a {
+			background: #cc0000;
+			color: #ffffff;
+		}
+
+		/* Contenido Central */
+		#middle {
+			width: 100%;
+			background-color: #ffffff;
+			overflow: auto; 
+		}
+
+		#content {
+			width: 920px;
+			margin: 0 auto;
+			background-color: #ffffff;
+			padding: 25px;
+			box-sizing: border-box;
+		}
+
+		.seccion-web {
+			margin-bottom: 50px;
+			padding-bottom: 25px;
+			border-bottom: 2px dashed #d0d0d0;
+		}
+
+		#content h2 {
+			color: #1a2b4c;
+			border-bottom: 3px solid #cc0000;
+			padding-bottom: 8px;
+			font-size: 24px;
+			margin-top: 0;
+			text-transform: uppercase;
+		}
+
+		#content h3 {
+			color: #3b5998;
+			font-size: 18px;
+			margin-top: 20px;
+		}
+
+		#content ul {
+			list-style-type: square;
+			line-height: 1.8em;
+			color: #444444;
+		}
+
+		/* Galería en 3 Columnas */
+		.galeria-contenedor {
+			overflow: auto;
+			margin-top: 20px;
+		}
+
+		.col-3 {
+			float: left;
+			width: 286px;
+			margin-right: 15px;
+			margin-bottom: 20px;
+			border: 2px solid #3b5998;
+			padding: 10px;
+			background-color: #f8f9fa;
+			box-sizing: border-box;
+			border-radius: 8px;
+			text-align: center;
+			transition: transform 0.2s;
+		}
+
+		.col-3:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 5px 15px rgba(59, 89, 152, 0.3);
+		}
+
+		.col-3.tercera {
+			margin-right: 0;
+		}
+
+		.col-3 img {
+			width: 100%;
+			height: 200px;
+			display: block;
+			border-radius: 4px;
+			object-fit: cover;
+		}
+
+		/* Tabla de Tarifas */
+		.tabla-tarifas {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+			font-size: 14px;
+		}
+
+		.tabla-tarifas th, 
+		.tabla-tarifas td {
+			border: 1px solid #b0c4de;
+			padding: 12px;
+			text-align: left;
+		}
+
+		.tabla-tarifas th {
+			background-color: #1a2b4c;
+			color: #ffffff;
+			font-weight: bold;
+			text-align: center;
+			text-transform: uppercase;
+			font-size: 13px;
+		}
+
+		.tabla-tarifas tr:nth-child(even) {
+			background-color: #f0f4f8;
+		}
+
+		.tabla-tarifas tr:hover {
+			background-color: #e2ecf7;
+		}
+
+		.tabla-nota {
+			background-color: #ffcc00;
+			font-weight: bold;
+			text-align: center !important;
+			color: #1a2b4c;
+		}
+
+		/* Formulario */
+		fieldset {
+			border: 3px solid #3b5998;
+			background-color: #fcfcfc;
+			border-radius: 10px;
+			padding: 25px;
+			margin-top: 10px;
+		}
+
+		legend {
+			font-weight: bold;
+			color: #cc0000;
+			background-color: #ffcc00;
+			padding: 5px 15px;
+			border-radius: 5px;
+			font-size: 16px;
+			border: 1px solid #cca300;
+		}
+
+		.campo-form {
+			margin-bottom: 18px;
+			display: inline-block;
+			width: 48%;
+		}
+
+		.campo-form.ancho-completo {
+			width: 100%;
+		}
+
+		label {
+			display: block;
+			font-weight: bold;
+			margin-bottom: 6px;
+			color: #1a2b4c;
+		}
+
+		input[type="text"],
+		input[type="email"],
+		input[type="tel"],
+		input[type="date"],
+		input[type="number"],
+		select,
+		textarea {
+			width: 95%;
+			padding: 10px;
+			border: 1px solid #a0a0a0;
+			border-radius: 5px;
+			box-sizing: border-box;
+			font-size: 14px;
+		}
+
+		input:focus, select:focus, textarea:focus {
+			background-color: #fff9e6;
+			border-color: #cc0000;
+			outline: none;
+			box-shadow: 0 0 8px rgba(204, 0, 0, 0.4);
+		}
+
+		.botones-form {
+			text-align: center;
+			margin-top: 25px;
+		}
+
+		.btn-submit, .btn-reset {
+			padding: 12px 30px;
+			font-weight: bold;
+			cursor: pointer;
+			border-radius: 5px;
+			font-size: 15px;
+			margin: 0 10px;
+		}
+
+		.btn-submit {
+			background-color: #cc0000;
+			border: 1px solid #990000;
+			color: #ffffff;
+		}
+
+		.btn-submit:hover {
+			background-color: #a30000;
+		}
+
+		.btn-reset {
+			background-color: #e0e0e0;
+			border: 1px solid #b0b0b0;
+			color: #333333;
+		}
+
+		.btn-reset:hover {
+			background-color: #cccccc;
+		}
+
+		.video-container {
+			margin-top: 25px;
+			text-align: center;
+		}
+
+		/* Guía TCG */
+		dl {
+			background-color: #f9f9f9;
+			padding: 20px;
+			border-left: 5px solid #ffcc00;
+			border-radius: 4px;
+		}
+
+		dt {
+			font-weight: bold;
+			color: #1a2b4c;
+			margin-top: 15px;
+			font-size: 15px;
+		}
+
+		dd {
+			margin-left: 0;
+			margin-top: 5px;
+			color: #555555;
+			line-height: 1.6em;
+		}
+
+		/* Footer */
+		#footer {
+			float: left;
+			clear: both;
+			width: 100%;
+			background-color: #1a2b4c;
+			color: #ffffff;
+			padding: 20px 30px;
+			box-sizing: border-box;
+			overflow: auto;
+			border-top: 4px solid #ffcc00;
+		}
+
+		.social-icons {
+			float: left;
+		}
+
+		.social-icons a {
+			color: #ffcc00;
+			font-size: 24px;
+			margin-right: 18px;
+			text-decoration: none;
+		}
+
+		.social-icons a:hover {
+			color: #ffffff;
+		}
+
+		.footer-nav {
+			float: right;
+		}
+
+		.footer-nav a {
+			color: #dddddd;
+			text-decoration: none;
+			margin-left: 20px;
+			font-size: 12px;
+		}
+
+		.footer-nav a:hover {
+			color: #ffcc00;
+		}
+
+		.copyright {
+			clear: both;
+			text-align: center;
+			font-size: 12px;
+			color: #aaaaaa;
+			margin-top: 15px;
+			padding-top: 10px;
+			border-top: 1px solid #334d7d;
+		}
+	</style>
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		
+		<div id="header">
+			<h1>POKEWEB - El Universo de las Cartas Pokémon</h1>
+			<p>Tu tienda y comunidad de coleccionismo TCG de confianza</p> 
+		</div>
+		
+        <div id='cssmenu'>
+            <ul>
+               <li><a href='inicio.html'><span>Inicio</span></a></li>
+               <li><a href='información.html'><span>Información</span></a></li>
+               <li><a href='galeria.html'><span>Galería</span></a></li>
+			   <li><a href='tarifas.html'><span>Tarifas</span></a></li>
+               <li><a href='contacto.html'><span>Contacto</span></a></li>
+               <li class='active last'><a href='mas_informacion.html'><span>Guía TCG</span></a></li>
+            </ul>
+        </div>
+        
+		<div id="middle">
+			<div id="content">
+				<section id="informacion" class="seccion-web">
+					<h2>¿Qué es Pokeweb?</h2>
+					<p>Pokeweb nació con el objetivo de unificar a todos los amantes y coleccionistas de cartas Pokémon en un solo lugar. Desde los inicios con el Set Base en los años 90 hasta las expansiones más modernas de hoy en día.</p>
+					
+					<h3>Categorías principales de cartas:</h3>
+					<ul>
+						<li><strong>Pokémon de Fase:</strong> Básicos, Fase 1 y Fase 2 tradicionales.</li>
+						<li><strong>Ultra Raras modernas:</strong>
+							<ul>
+								<li>Cartas Pokémon V y VMAX</li>
+								<li>Cartas Pokémon ex y VSTAR</li>
+								<li>Ilustraciones Raras Especiales (SIR)</li>
+							</ul>
+						</li>
+					</ul>
+					
+					<p>Nuestro compromiso es garantizar la autenticidad de cada carta comercializada y ofrecer una plataforma segura para todos los entusiastas del juego de cartas coleccionables.</p>
+
+					<h3>¡GUÍA COMPLETA Para Empezar Tu Colección de Pokémon TCG en 2026!</h3>
+					<div class="video-container">
+						<iframe width="700" height="390" src="https://rr1---sn-4g5ednky.googlevideo.com/videoplayback?expire=1793926107&ei=e8_sapSyBtKO8uMP0rSW0Ag&ip=64.137.89.254&id=o-ANUxHZjtA2djKcK4M9OpqVbA4A1ylHBYK2w6o9KilZx_&itag=18&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&rms=au%2Cau&pcm2=no&bui=AZFAFb-ruHDaLvmKZ1Smag1lUp0JYj7vRlrxNJGIFr27HrWLuy39XNS2KjaPGTq0TW8zrgHHQkLSR_So&spc=mpRQ_2KGlpP7jCMa_mzDEGOpVW6s18yPgnpAWErYjcVj376lJU6hNAYdglpA12M&vprv=1&svpuc=1&mime=video%2Fmp4&rqh=1&gir=yes&clen=59018811&ratebypass=yes&dur=1044.805&lmt=1775662132265906&epbp=1&fexp=51565115,52271469&c=ANDROID&txp=4538534&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cpcm2%2Cbui%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Crqh%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&sig=AE0s2JYwRQIgPIvl9N-bP49xeJw3VpyNyxcaV1t7Xg9H5i94pgy_pHsCIQCFyEglOiQtaStxgnh_wzWcShPEC8iNbrMCFc1t8CEhEA%3D%3D&rm=sn-apne7l&rrc=104,191&req_id=5dfd8f2129e7a3ee&cps=0&ipbypass=yes&redirect_counter=2&cm2rm=sn-4g5l777e&cms_redirect=yes&cmsv=e&met=1793904516,&mh=Aw&mip=2a02:9130:a03f:79c7:3c31:e55e:8830:c61&mm=34&mn=sn-4g5ednky&ms=ltu&mt=1793903851&mv=m&mvi=1&pl=50&lsparams=cps,ipbypass,met,mh,mip,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRAIgN0v-eOkCOcg_z9R-wj9T3RNZpnJ-g84yZDzESl6xpo4CIC7oQdWJkbFTFG9Sz8lvCwhdfh73nl17PYwYFnB9BVMv" title="
+¡GUÍA COMPLETA Para Empezar Tu Colección de Pokémon TCG en 2026!" frameborder="0" allowfullscreen  ></iframe>
+					</div>
+				</section>
+				<div id="footer">
+			<div class="social-icons">
+				<a href="https://www.facebook.com/Pokemon/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+				<a href="https://x.com/Pokemon" target="_blank"><i class="fab fa-twitter-square"></i></a>
+				<a href="https://www.instagram.com/pokemonesp/" target="_blank"><i class="fab fa-instagram"></i></a>
+				<a href="https://www.youtube.com/watch?v=FvmcG3fc4xg" target="_blank"><i class="fab fa-youtube-square"></i></a>
+			</div>
+			<div class="footer-nav">
+				<a href="#">Empleo</a>
+				<a href="#">Normativa</a>
+				<a href="#">Política de Privacidad</a>
+			</div>
+			<div class="copyright">
+				Todos los Derechos Reservados &copy; Pokeweb 2026
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
+				
